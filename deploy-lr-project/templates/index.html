@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Machine Learning Model!</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Linear regression</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+<body>
+
+<div class="login" style="text-align: center">
+    <h1>Linear Regression Model</h1>
+    <p></p>
+    <h2>Price Prediction</h2>
+    <p>Please input the number of rooms and the distance from the nearest employment centre</p>
+    {% for field, errors in data.form.errors.items() %}
+    {{ ', '.join(errors) }}
+    {% endfor %}
+    <form action="{{url_for('predict')}}" method="post">
+        <div class="form-group">
+            {{ data.form.rooms.label }}
+            {{ data.form.rooms(class="form-text") }}
+            {{ data.form.distance.label }}
+            {{ data.form.distance(class="form-text") }}
+            {{ data.form.submit(class="btn btn-primary")}}
+    </form>
+    <br>
+    <br>
+    <b>{{data.prediction_text}}</b>
+</div>
+</body>
+</html>
